@@ -30,7 +30,8 @@ export class DeviceService {
 
   async assign(deviceId: string, sub: string) {
     const user = await User.findOneByOrFail({ sub });
-    const { walletId } = await this.clients.admin.NCW.createWallet();
+    // BOOTCAMP: What is wrong here?
+    const { walletId } = await this.clients.signer.NCW.createWallet();
 
     // note: creating a default first account
     await this.clients.admin.NCW.createWalletAccount(walletId);
