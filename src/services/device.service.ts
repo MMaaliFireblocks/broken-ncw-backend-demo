@@ -1,3 +1,10 @@
+/**
+ * Hi 👋 Boston Bootcamp 2025
+ * I have put 2 errors in here
+ * Please find both before we can begin running the demo app
+ * HINT: what were the NCW user roles we discussed?
+ */
+
 import { Device } from "../model/device";
 import { User } from "../model/user";
 import { Wallet } from "../model/wallet";
@@ -30,7 +37,6 @@ export class DeviceService {
 
   async assign(deviceId: string, sub: string) {
     const user = await User.findOneByOrFail({ sub });
-    // BOOTCAMP: What is wrong here?
     const { walletId } = await this.clients.signer.NCW.createWallet();
 
     // note: creating a default first account
@@ -71,7 +77,7 @@ export class DeviceService {
   }
 
   async rpc(walletId: string, deviceId: string, message: string) {
-    const response = await this.clients.signer.NCW.invokeWalletRpc(
+    const response = await this.clients.admin.NCW.invokeWalletRpc(
       walletId,
       deviceId,
       message,
